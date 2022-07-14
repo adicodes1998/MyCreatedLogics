@@ -1,0 +1,142 @@
+<div style="margin-left: 20px; padding-top: 70px;">
+  <div class="Row" style="margin-top: 10px" *ngIf="leftDiv.length > 0">
+    <div class="Column container">
+      <div class="header">Available</div>
+      <div class="mainbody">
+        <div *ngFor="let e of leftDiv">
+          <input
+            type="checkbox"
+            [id]="e.email"
+            [name]="e.name"
+            [value]="e.name"
+            [(ngModel)]="e.isChecked"
+            (click)="onRadioCheckLeftResp($event, e)"
+          />
+          <fa-icon
+            *ngIf="e.collapsed"
+            [icon]="faAdd"
+            (click)="addBoxClicked(e)"
+            style="padding-left: 5px;font-size: 15px;color: #009900;"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!e.collapsed"
+            [icon]="faMinus"
+            (click)="addBoxClicked(e)"
+            style="padding-left: 5px;font-size: 15px;color: #009900;"
+          ></fa-icon>
+          <label [for]="e.name" style="padding-left: 15px">{{ e.name }}</label>
+          <br />
+          <div class="body" *ngIf="!e.collapsed" style="padding-left:35px">
+            <div *ngFor="let m of e.matters">
+              <input
+                type="checkbox"
+                [id]="m.matterId"
+                [name]="m.matterName"
+                [value]="m.matterName"
+                [(ngModel)]="m.isChecked"
+                (click)="onRadioCheckLeftMatter($event, e)"
+              />
+              <label [for]="m.matterName" style="padding-left: 15px">{{
+                m.matterName
+              }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="Column"
+      style="width: 70px; border: none;margin-top:50%;margin-bottom: 50%;"
+    >
+      <div>
+        <fa-icon
+          class="icon"
+          (click)="moveSelectedToRight()"
+          [icon]="faAngleRight"
+        ></fa-icon>
+        <br />
+        <fa-icon
+          class="icon"
+          (click)="moveSelectedToLeft()"
+          [icon]="faAngleLeft"
+        ></fa-icon>
+        <fa-icon
+          class="icon"
+          (click)="moveAllToRight()"
+          [icon]="faAngleDoubleRight"
+        ></fa-icon>
+        <fa-icon
+          class="icon"
+          (click)="moveAllToLeft()"
+          [icon]="faAngleDoubleLeft"
+        ></fa-icon>
+      </div>
+    </div>
+    <div class="Column container">
+      <div class="header">Selected</div>
+      <div class="mainbody">
+        <div *ngFor="let e of rightDiv">
+          <input
+            type="checkbox"
+            [id]="e.email"
+            [name]="e.name"
+            [value]="e.name"
+            [(ngModel)]="e.isChecked"
+            (click)="onRadioCheckRightResp($event, e)"
+          />
+          <fa-icon
+            *ngIf="e.collapsed"
+            [icon]="faAdd"
+            (click)="addBoxClicked(e)"
+            style="padding-left: 5px;font-size: 15px;color: #009900;"
+          ></fa-icon>
+          <fa-icon
+            *ngIf="!e.collapsed"
+            [icon]="faMinus"
+            (click)="addBoxClicked(e)"
+            style="padding-left: 5px;font-size: 15px;color: #009900;"
+          ></fa-icon>
+          <label [for]="e.name" style="padding-left: 15px">{{ e.name }}</label>
+          <br />
+          <div class="body" *ngIf="!e.collapsed" style="padding-left:35px">
+            <div *ngFor="let m of e.matters">
+              <input
+                type="checkbox"
+                [id]="m.matterId"
+                [name]="m.matterName"
+                [value]="m.matterName"
+                [(ngModel)]="m.isChecked"
+                (click)="onRadioCheckRightMatter($event, e)"
+              />
+              <label [for]="m.matterName" style="padding-left: 15px">{{
+                m.matterName
+              }}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer
+    style="max-width: 700px;padding-left: 10px;margin-top: 11px; position: sticky ; bottom: 0 ; background-color: white"
+  >
+    <div class="pull-left">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        style="margin-left:10px;margin-top: 7px;padding-top: 3px; height:31px; margin-bottom: 10px"
+        (click)="(true)"
+      >
+        Cancel
+      </button>
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        style="margin-left:10px;margin-top: 7px;padding-top: 3px; height:31px ; margin-bottom: 10px;"
+        (click)="(true)"
+      >
+        Submit
+      </button>
+    </div>
+  </footer>
+</div>
